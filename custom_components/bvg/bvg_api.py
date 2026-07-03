@@ -61,20 +61,23 @@ def products_bitmask(enabled: dict[str, bool]) -> int:
 
 async def fetch_departures(
     session: aiohttp.ClientSession,
-    location_name: str,
+    location: str,
     *,
     max_journeys: int = 10,
     lang: str = "de",
 ) -> list[Departure] | None:
     """Fetch upcoming departures from a single stop.
 
-    The BVG departureBoard endpoint takes a location *name* (not an id) and
-    returns the next departures across all lines serving that stop.
+    ``location`` is the BVG station id (the ``A=1@O=...@L=...`` string from
+    the location search). The departureBoard endpoint accepts this id as the
+    ``locationName`` parameter and returns departures for *any* stop — minor
+    stops like "Im Rosengrund" return 0 results when queried by display name
+    but work correctly when queried by id.
     Returns a list of Departure, or None when the API call failed.
     """
     params = {
         "lang": lang,
-        "locationName": location_name,
+        "locationName": location,
         "maxJourneys": str(max_journeys),
     }
     url = DEPARTUREBOARD_URL + "?" + urlencode(params)

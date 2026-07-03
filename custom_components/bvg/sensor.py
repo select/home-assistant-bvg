@@ -91,9 +91,23 @@ class BvgTransportSensor(SensorEntity):
         self._config = config_entry
         self._attr_unique_id = f"{DOMAIN}_{config_entry.entry_id}"
         self._attr_has_entity_name = True
+        # Use the stop name (without geo coordinates / parentheses) as the
+        # entity name so sensors are named e.g. "Im Rosengrund" instead of
+        # the generic "Next departure" / "Next departure_2".
+        self._attr_name = self._stop_name(config_entry.data)
         self._session = None
         self.last_update_success: datetime | None = None
         self._attr_available = True
+
+    @staticmethod
+    def _stop_name(data: dict[str, Any]) -> str:
+        """Derive a clean entity name from the origin/destination stop name."""
+        if data.get(CONF_MODE) == MODE_DEPARTURES:
+            name = data.get(CONF_ORIGIN_NAME) or "Next departure"
+        else:
+            name = data.get(CONF_ORIGIN_NAME) or "Next connection"
+        # "Im Rosengrund (Berlin)" -> "Im Rosengrund"
+        return name.split(" (")[0].strip() or name
 
     @property
     def _data(self) -> dict[str, Any]:
@@ -117,7 +131,9 @@ class BvgTransportSensor(SensorEntity):
 
     @property
     def name(self) -> str:  # type: ignore[override]
-        return "Next departure" if self._is_departures else "Next connection"
+        # Recompute from current data so an options/reconfigure change of
+        # origin is reflected.
+        return self._stop_name(self._data)
 
     @property
     def icon(self) -> str:
@@ -180,7 +196,7 @@ class BvgTransportSensor(SensorEntity):
         fetch_n = min(max(max_results, 10), 20)
         result = await fetch_departures(
             self.session,
-            data[CONF_ORIGIN_NAME],
+            data[CONF_ORIGIN_ID],
             max_journeys=fetch_n,
         )
         await self._apply_result(
