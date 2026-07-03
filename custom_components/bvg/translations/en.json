@@ -2,6 +2,11 @@
   "config": {
     "step": {
       "user": {
+        "title": "Sensor mode",
+        "description": "Choose what this sensor should show.",
+        "data": { "mode": "Mode" }
+      },
+      "origin_search": {
         "title": "Origin stop",
         "description": "Search for your origin (departure) stop by name.",
         "data": { "search": "Stop name" }
@@ -23,12 +28,13 @@
       },
       "options": {
         "title": "Travel options",
-        "description": "Configure how connections are searched.",
+        "description": "Configure how departures / connections are fetched.",
         "data": {
           "time_sel": "Time selection",
           "duration": "Look-ahead window (minutes)",
           "walking_time": "Walking time to stop (minutes)",
           "max_connections": "Maximum connections to show",
+          "max_results": "Maximum departures to show",
           "suburban": "S-Bahn",
           "subway": "U-Bahn",
           "tram": "Tram",
@@ -39,12 +45,13 @@
         }
       },
       "reconfigure": {
-        "title": "Reconfigure BVG connection",
+        "title": "Reconfigure BVG sensor",
         "data": {
           "time_sel": "Time selection",
           "duration": "Look-ahead window (minutes)",
           "walking_time": "Walking time to stop (minutes)",
           "max_connections": "Maximum connections to show",
+          "max_results": "Maximum departures to show",
           "suburban": "S-Bahn",
           "subway": "U-Bahn",
           "tram": "Tram",
@@ -68,6 +75,7 @@
           "duration": "Look-ahead window (minutes)",
           "walking_time": "Walking time to stop (minutes)",
           "max_connections": "Maximum connections to show",
+          "max_results": "Maximum departures to show",
           "suburban": "S-Bahn",
           "subway": "U-Bahn",
           "tram": "Tram",

@@ -2,6 +2,11 @@
   "config": {
     "step": {
       "user": {
+        "title": "Sensor-Modus",
+        "description": "Wähle, was dieser Sensor anzeigen soll.",
+        "data": { "mode": "Modus" }
+      },
+      "origin_search": {
         "title": "Start-Haltestelle",
         "description": "Suche nach deiner Start- (Abfahrts-) Haltestelle nach Name.",
         "data": { "search": "Haltestellenname" }
@@ -23,12 +28,13 @@
       },
       "options": {
         "title": "Reiseoptionen",
-        "description": "Konfiguriere, wie Verbindungen gesucht werden.",
+        "description": "Konfiguriere, wie Abfahrten / Verbindungen abgefragt werden.",
         "data": {
           "time_sel": "Zeitauswahl",
           "duration": "Vorlaufzeit (Minuten)",
           "walking_time": "Fußweg zur Haltestelle (Minuten)",
           "max_connections": "Maximale Anzahl Verbindungen",
+          "max_results": "Maximale Anzahl Abfahrten",
           "suburban": "S-Bahn",
           "subway": "U-Bahn",
           "tram": "Tram",
@@ -39,12 +45,13 @@
         }
       },
       "reconfigure": {
-        "title": "BVG-Verbindung neu konfigurieren",
+        "title": "BVG-Sensor neu konfigurieren",
         "data": {
           "time_sel": "Zeitauswahl",
           "duration": "Vorlaufzeit (Minuten)",
           "walking_time": "Fußweg zur Haltestelle (Minuten)",
           "max_connections": "Maximale Anzahl Verbindungen",
+          "max_results": "Maximale Anzahl Abfahrten",
           "suburban": "S-Bahn",
           "subway": "U-Bahn",
           "tram": "Tram",
@@ -68,6 +75,7 @@
           "duration": "Vorlaufzeit (Minuten)",
           "walking_time": "Fußweg zur Haltestelle (Minuten)",
           "max_connections": "Maximale Anzahl Verbindungen",
+          "max_results": "Maximale Anzahl Abfahrten",
           "suburban": "S-Bahn",
           "subway": "U-Bahn",
           "tram": "Tram",

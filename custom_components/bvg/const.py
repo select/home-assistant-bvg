@@ -14,11 +14,16 @@ FALLBACK_TIME = timedelta(minutes=15)
 # Reverse-engineered www.bvg.de endpoints (no auth, just needs a Referer).
 LOCATIONS_URL = "https://www.bvg.de/api/search/v1/locations/byName/{lang}"
 CONNECTIONS_URL = "https://www.bvg.de/connection-search/v1/connections"
+DEPARTUREBOARD_URL = "https://www.bvg.de/connection-search/v1/departureBoard"
 REFERER = "https://www.bvg.de/"
 
 API_MAX_RESULTS = 8
 
 DEFAULT_ICON = "mdi:train"
+
+# Sensor mode: departures from a single stop, or connections A->B.
+MODE_DEPARTURES = "departures"
+MODE_CONNECTIONS = "connections"
 
 # HAFAS-style product bitmask used by BVG.
 # The website sends products=127 when every mode is ticked on.
@@ -34,6 +39,7 @@ PRODUCT_BITS = {
 ALL_PRODUCTS = sum(PRODUCT_BITS.values())  # 127
 
 # Config entry keys
+CONF_MODE = "mode"
 CONF_ORIGIN = "origin"
 CONF_ORIGIN_ID = "origin_id"
 CONF_ORIGIN_NAME = "origin_name"
@@ -44,6 +50,7 @@ CONF_TIME_SEL = "time_sel"
 CONF_DURATION = "duration"          # query departures for how many minutes ahead
 CONF_WALKING_TIME = "walking_time"  # hide connections leaving sooner than this
 CONF_MAX_CONNECTIONS = "max_connections"
+CONF_MAX_RESULTS = "max_results"  # departures mode: how many departures to fetch
 
 CONF_TYPE_ICE = "ice"
 CONF_TYPE_IC = "ic"
