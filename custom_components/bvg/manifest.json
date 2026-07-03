@@ -1,0 +1,12 @@
+{
+  "domain": "bvg",
+  "name": "BVG Berlin Connections",
+  "codeowners": ["@select"],
+  "config_flow": true,
+  "documentation": "https://github.com/select/home-assistant-bvg",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/select/home-assistant-bvg/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

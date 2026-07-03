@@ -1,0 +1,7 @@
+{
+  "name": "BVG Berlin Connections",
+  "hide_default_branch": false,
+  "country": "DE",
+  "homeassistant": "2024.1.0",
+  "hacs": "1.0.0"
+}

@@ -1,0 +1,82 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Origin stop",
+        "description": "Search for your origin (departure) stop by name.",
+        "data": { "search": "Stop name" }
+      },
+      "origin": {
+        "title": "Select origin",
+        "description": "Choose your origin stop from the results.",
+        "data": { "selected_stop": "Origin stop" }
+      },
+      "destination_search": {
+        "title": "Destination stop",
+        "description": "Search for your destination (arrival) stop by name.",
+        "data": { "search": "Stop name" }
+      },
+      "destination": {
+        "title": "Select destination",
+        "description": "Choose your destination stop from the results.",
+        "data": { "selected_stop": "Destination stop" }
+      },
+      "options": {
+        "title": "Travel options",
+        "description": "Configure how connections are searched.",
+        "data": {
+          "time_sel": "Time selection",
+          "duration": "Look-ahead window (minutes)",
+          "walking_time": "Walking time to stop (minutes)",
+          "max_connections": "Maximum connections to show",
+          "suburban": "S-Bahn",
+          "subway": "U-Bahn",
+          "tram": "Tram",
+          "bus": "Bus",
+          "regional": "Regional (RE/RB)",
+          "ic": "InterCity (IC/EC)",
+          "ice": "ICE"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure BVG connection",
+        "data": {
+          "time_sel": "Time selection",
+          "duration": "Look-ahead window (minutes)",
+          "walking_time": "Walking time to stop (minutes)",
+          "max_connections": "Maximum connections to show",
+          "suburban": "S-Bahn",
+          "subway": "U-Bahn",
+          "tram": "Tram",
+          "bus": "Bus",
+          "regional": "Regional (RE/RB)",
+          "ic": "InterCity (IC/EC)",
+          "ice": "ICE"
+        }
+      }
+    },
+    "error": {
+      "no_stops_found": "No stops found for '{query}'."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Travel options",
+        "data": {
+          "time_sel": "Time selection",
+          "duration": "Look-ahead window (minutes)",
+          "walking_time": "Walking time to stop (minutes)",
+          "max_connections": "Maximum connections to show",
+          "suburban": "S-Bahn",
+          "subway": "U-Bahn",
+          "tram": "Tram",
+          "bus": "Bus",
+          "regional": "Regional (RE/RB)",
+          "ic": "InterCity (IC/EC)",
+          "ice": "ICE"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Start-Haltestelle",
+        "description": "Suche nach deiner Start- (Abfahrts-) Haltestelle nach Name.",
+        "data": { "search": "Haltestellenname" }
+      },
+      "origin": {
+        "title": "Start wählen",
+        "description": "Wähle deine Start-Haltestelle aus den Ergebnissen.",
+        "data": { "selected_stop": "Start-Haltestelle" }
+      },
+      "destination_search": {
+        "title": "Ziel-Haltestelle",
+        "description": "Suche nach deiner Ziel- (Ankunfts-) Haltestelle nach Name.",
+        "data": { "search": "Haltestellenname" }
+      },
+      "destination": {
+        "title": "Ziel wählen",
+        "description": "Wähle deine Ziel-Haltestelle aus den Ergebnissen.",
+        "data": { "selected_stop": "Ziel-Haltestelle" }
+      },
+      "options": {
+        "title": "Reiseoptionen",
+        "description": "Konfiguriere, wie Verbindungen gesucht werden.",
+        "data": {
+          "time_sel": "Zeitauswahl",
+          "duration": "Vorlaufzeit (Minuten)",
+          "walking_time": "Fußweg zur Haltestelle (Minuten)",
+          "max_connections": "Maximale Anzahl Verbindungen",
+          "suburban": "S-Bahn",
+          "subway": "U-Bahn",
+          "tram": "Tram",
+          "bus": "Bus",
+          "regional": "Regionalverkehr (RE/RB)",
+          "ic": "InterCity (IC/EC)",
+          "ice": "ICE"
+        }
+      },
+      "reconfigure": {
+        "title": "BVG-Verbindung neu konfigurieren",
+        "data": {
+          "time_sel": "Zeitauswahl",
+          "duration": "Vorlaufzeit (Minuten)",
+          "walking_time": "Fußweg zur Haltestelle (Minuten)",
+          "max_connections": "Maximale Anzahl Verbindungen",
+          "suburban": "S-Bahn",
+          "subway": "U-Bahn",
+          "tram": "Tram",
+          "bus": "Bus",
+          "regional": "Regionalverkehr (RE/RB)",
+          "ic": "InterCity (IC/EC)",
+          "ice": "ICE"
+        }
+      }
+    },
+    "error": {
+      "no_stops_found": "Keine Haltestellen für '{query}' gefunden."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Reiseoptionen",
+        "data": {
+          "time_sel": "Zeitauswahl",
+          "duration": "Vorlaufzeit (Minuten)",
+          "walking_time": "Fußweg zur Haltestelle (Minuten)",
+          "max_connections": "Maximale Anzahl Verbindungen",
+          "suburban": "S-Bahn",
+          "subway": "U-Bahn",
+          "tram": "Tram",
+          "bus": "Bus",
+          "regional": "Regionalverkehr (RE/RB)",
+          "ic": "InterCity (IC/EC)",
+          "ice": "ICE"
+        }
+      }
+    }
+  }
+}
