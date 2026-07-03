@@ -153,7 +153,8 @@ class BvgTransportSensor(SensorEntity):
         }
         if self._is_departures:
             attrs["to"] = None
-            attrs["departures"] = [d.to_dict() for d in self.departures]
+            walking = int(data.get(CONF_WALKING_TIME, 0) or 0)
+            attrs["departures"] = [d.to_dict(walking) for d in self.departures]
         else:
             destination = data.get(CONF_DESTINATION_NAME)
             attrs["to"] = destination

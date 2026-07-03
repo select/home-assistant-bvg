@@ -81,8 +81,16 @@ class Departure:
             delay=_delay_minutes(dep.get("delay")),
         )
 
-    def to_dict(self) -> dict[str, Any]:
-        """Serialise in the vas3k-compatible departures attribute format."""
+    def to_dict(self, walking_time: int = 0) -> dict[str, Any]:
+        """Serialise in the vas3k-compatible departures attribute format.
+
+        Note: ``delay`` is emitted in **seconds** to match the format the VBB
+        API returns and the lovelace-berlin-transport-card expects (it divides
+        by 60 for display). Internally we store delay in minutes.
+        """
+        delay_seconds = None
+        if self.delay is not None:
+            delay_seconds = self.delay * 60
         return {
             "line_name": self.line_name,
             "line_type": self.line_type,
@@ -93,6 +101,7 @@ class Departure:
             "color": self.color,
             "icon": self.icon,
             "cancelled": False,
-            "delay": self.delay,
+            "delay": delay_seconds,
             "warnings": None,
+            "walking_time": walking_time,
         }
