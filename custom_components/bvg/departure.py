@@ -50,6 +50,7 @@ class Departure:
     timestamp: datetime | None
     direction: str | None
     track: str | None
+    subline: str | None  # actual departure stop name (for clustered departureBoard)
     icon: str
     color: str
     delay: int | None
@@ -76,6 +77,7 @@ class Departure:
             timestamp=timestamp,
             direction=service.get("direction"),
             track=element.get("track"),
+            subline=element.get("subline"),
             icon=visuals.get("icon", DEFAULT_ICON),
             color=visuals.get("color", "#4D4D4D"),
             delay=_delay_minutes(dep.get("delay")),

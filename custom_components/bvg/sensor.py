@@ -191,12 +191,14 @@ class BvgTransportSensor(SensorEntity):
     async def _update_departures(self) -> None:
         data = self._data
         max_results = int(data.get(CONF_MAX_RESULTS, 10) or 10)
-        # The API caps maxJourneys; fetch a few extra so product/walking
-        # filters still leave enough entries.
-        fetch_n = min(max(max_results, 10), 20)
+        # The departureBoard clusters nearby stops into one response, so we
+        # fetch more than needed and filter down to the queried stop via its
+        # subline field afterwards.
+        fetch_n = min(max(max_results * 3, 20), 50)
         result = await fetch_departures(
             self.session,
             data[CONF_ORIGIN_ID],
+            expected_stop=data.get(CONF_ORIGIN_NAME),
             max_journeys=fetch_n,
         )
         await self._apply_result(

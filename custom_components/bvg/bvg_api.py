@@ -63,6 +63,7 @@ async def fetch_departures(
     session: aiohttp.ClientSession,
     location: str,
     *,
+    expected_stop: str | None = None,
     max_journeys: int = 10,
     lang: str = "de",
 ) -> list[Departure] | None:
@@ -73,6 +74,11 @@ async def fetch_departures(
     ``locationName`` parameter and returns departures for *any* stop — minor
     stops like "Im Rosengrund" return 0 results when queried by display name
     but work correctly when queried by id.
+
+    The endpoint clusters departures from nearby stops into one response; each
+    element carries a ``subline`` field naming the actual departure stop. When
+    ``expected_stop`` is given, only departures whose ``subline`` matches are
+    returned (so a minor stop shows only its own departures, not the cluster).
     Returns a list of Departure, or None when the API call failed.
     """
     params = {
@@ -100,6 +106,14 @@ async def fetch_departures(
             elements.extend((day or {}).get("elements") or [])
     elif isinstance(data, dict):
         elements.extend(data.get("elements") or [])
+
+    # The departureBoard clusters nearby stops; keep only the departures that
+    # actually depart from the queried stop (matched via the subline field).
+    if expected_stop is not None:
+        elements = [
+            e for e in elements
+            if (e.get("subline") or "").strip() == expected_stop.strip()
+        ]
 
     departures = [Departure.from_api(e) for e in elements]
     departures.sort(key=lambda d: d.timestamp or datetime.max)
