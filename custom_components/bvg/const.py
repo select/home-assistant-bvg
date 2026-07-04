@@ -6,7 +6,7 @@ DOMAIN = "bvg"
 # Poll every 60 seconds. The BVG connection-search API has no published rate
 # limit and a single request returns the next handful of connections, so this
 # is plenty for a "when is the next connection" sensor.
-SCAN_INTERVAL = timedelta(seconds=60)
+SCAN_INTERVAL = timedelta(minutes=5)
 
 # How long to keep showing the last good result when the API errors out.
 FALLBACK_TIME = timedelta(minutes=15)
