@@ -17,7 +17,7 @@ This is a replacement for [vas3k/home-assistant-berlin-transport](https://github
 - 🔎 Config-flow setup: pick a mode, search stops by name, choose from results
 - 🚇 Per-product filtering (S-Bahn, U-Bahn, Tram, Bus, Regional, IC, ICE)
 - 🚶 Walking-time filter (hide departures/connections leaving sooner than you can reach them)
-- 🔁 60 s polling, graceful fallback on API errors
+- 🔁 5 min polling, graceful fallback on API errors
 
 ## Installation
 
@@ -145,7 +145,7 @@ GET https://www.bvg.de/connection-search/v1/connections
     &products=<bitmask>   # HAFAS bitmask, 127 = all
 ```
 
-The integration polls every 60 seconds. Station-name resolution happens once
+The integration polls every 5 minutes (configurable via `SCAN_INTERVAL` in `custom_components/bvg/const.py`). Station-name resolution happens once
 during config flow; the departureBoard endpoint takes the stop *name* directly.
 
 ## License
