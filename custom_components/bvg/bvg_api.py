@@ -77,8 +77,9 @@ async def fetch_departures(
 
     The endpoint clusters departures from nearby stops into one response; each
     element carries a ``subline`` field naming the actual departure stop. When
-    ``expected_stop`` is given, only departures whose ``subline`` matches are
-    returned (so a minor stop shows only its own departures, not the cluster).
+    ``expected_stop`` is given, only departures whose ``subline`` matches (or is
+    missing) are returned (so a minor stop shows only its own departures, not
+    the cluster).
     Returns a list of Departure, or None when the API call failed.
     """
     params = {
@@ -109,10 +110,14 @@ async def fetch_departures(
 
     # The departureBoard clusters nearby stops; keep only the departures that
     # actually depart from the queried stop (matched via the subline field).
+    # For major stations (e.g. "S Karlshorst") the API omits ``subline`` on the
+    # station's own departures and only sets it on clustered nearby stops, so
+    # a missing subline also counts as the queried stop.
     if expected_stop is not None:
         elements = [
             e for e in elements
-            if (e.get("subline") or "").strip() == expected_stop.strip()
+            if not e.get("subline")
+            or e["subline"].strip() == expected_stop.strip()
         ]
 
     departures = [Departure.from_api(e) for e in elements]
